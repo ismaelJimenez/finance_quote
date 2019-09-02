@@ -1,0 +1,14 @@
+language: dart
+dart:
+  # Install the latest stable release
+  - stable
+  # Install the latest dev release
+  - dev
+
+dart_task:
+  - test: --platform vm
+
+  # Warnings are fatal, but we only analyze the lib/ directory.
+  - dartanalyzer: --fatal-warnings lib
+
+  - dartfmt

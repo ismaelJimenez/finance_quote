@@ -1,0 +1,19 @@
+name: finance_quote
+description: A multi-platform API to retrieve quote information and prices for stocks (e.g. Amazon, Google), commodities (e.g. Gold, Oil) and crypto-currencies (e.g. Bitcoin, Ethereum).
+version: 0.0.1
+author: "Ismael Jiménez <ijimenezm@hotmail.es>"
+homepage: https://github.com/ismaelJimenez/finance_quote
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  http: ^0.12.0
+  logger: ^0.7.0+2
+  html: ^0.14.0+2
+  intl: ^0.16.0
+
+dev_dependencies:
+  test: '>=1.3.0 <1.6.8'
+  mockito: ^4.1.0
+  pedantic: ^1.8.0+1
