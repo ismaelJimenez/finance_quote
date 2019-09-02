@@ -1,6 +1,5 @@
 A Dart plugin for retrieving financial quote prices.
 
-
 [![pub package](https://img.shields.io/pub/v/finance_quote.svg)](https://pub.dev/packages/finance_quote)
 [![Build Status](https://travis-ci.org/ismaelJimenez/finance_quote.svg?branch=master)](https://travis-ci.org/ismaelJimenez/finance_quote)
 
