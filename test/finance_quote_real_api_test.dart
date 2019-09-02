@@ -12,7 +12,8 @@ import 'package:test/test.dart';
 class MockClient extends Mock implements http.Client {}
 
 void main() {
-  group('downloadQuotePrice/downloadRawQuote Test [FinanceQuote] - Real API', () {
+  group('downloadQuotePrice/downloadRawQuote Test [FinanceQuote] - Real API',
+      () {
     test('Yahoo', () async {
       Map<String, Map<String, dynamic>> quote;
       try {

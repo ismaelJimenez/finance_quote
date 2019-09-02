@@ -29,7 +29,8 @@ Future<void> main(List<String> arguments) async {
 
   final Map<String, Map<String, dynamic>> cryptoQuoteRaw =
       await FinanceQuote.getRawData(
-          quoteProvider: QuoteProvider.coincap, symbols: <String>['bitcoin', 'ethereum']);
+          quoteProvider: QuoteProvider.coincap,
+          symbols: <String>['bitcoin', 'ethereum']);
 
   print('Number of quotes retrieved: ${cryptoQuoteRaw.keys.length}.');
   print(

@@ -18,7 +18,9 @@ void main() {
     Map<String, Map<String, dynamic>> quote;
     try {
       quote = await FinanceQuote.getRawData(
-          quoteProvider: QuoteProvider. yahoo, symbols: <String>[], client: client);
+          quoteProvider: QuoteProvider.yahoo,
+          symbols: <String>[],
+          client: client);
     } catch (e) {
       expect(e, 'No exception');
     }
@@ -32,7 +34,9 @@ void main() {
     Map<String, Map<String, dynamic>> quote;
     try {
       quote = await FinanceQuote.getPrice(
-          quoteProvider: QuoteProvider. yahoo, symbols: <String>[], client: client);
+          quoteProvider: QuoteProvider.yahoo,
+          symbols: <String>[],
+          client: client);
     } catch (e) {
       expect(e, 'No exception');
     }
@@ -53,7 +57,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -80,7 +86,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO', 'GOOG', 'AIR.PA'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO', 'GOOG', 'AIR.PA'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -112,7 +120,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -136,7 +146,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -162,7 +174,9 @@ void main() {
       Map<String, Map<String, String>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -189,7 +203,9 @@ void main() {
       Map<String, Map<String, String>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO', 'GOOG', 'AIR.PA'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO', 'GOOG', 'AIR.PA'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -221,7 +237,9 @@ void main() {
       Map<String, Map<String, String>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -245,7 +263,9 @@ void main() {
       Map<String, Map<String, String>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. yahoo, symbols: <String>[ 'KO'], client: client);
+            quoteProvider: QuoteProvider.yahoo,
+            symbols: <String>['KO'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -271,7 +291,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. morningstarDe, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -309,8 +331,10 @@ void main() {
 
       Map<String, Map<String, dynamic>> quote;
       try {
-        quote = await FinanceQuote.getRawData(quoteProvider: QuoteProvider. morningstarDe,
-            symbols: <String>[ '0P000001BW', '0P00012BBI', '0P00009QPB'], client: client);
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW', '0P00012BBI', '0P00009QPB'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -349,7 +373,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. morningstarDe, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -371,7 +397,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. morningstarDe, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -397,7 +425,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. morningstarDe, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -435,8 +465,10 @@ void main() {
 
       Map<String, Map<String, dynamic>> quote;
       try {
-        quote = await FinanceQuote.getPrice(quoteProvider: QuoteProvider. morningstarDe,
-            symbols: <String>[ '0P000001BW', '0P00012BBI', '0P00009QPB'], client: client);
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW', '0P00012BBI', '0P00009QPB'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -475,7 +507,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. morningstarDe, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -497,7 +531,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. morningstarDe, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarDe,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -523,7 +559,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. morningstarEs, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarEs,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -561,8 +599,10 @@ void main() {
 
       Map<String, Map<String, dynamic>> quote;
       try {
-        quote = await FinanceQuote.getRawData(quoteProvider: QuoteProvider. morningstarEs,
-            symbols: <String>[ '0P000001BW', '0P00012BBI', '0P00009QPB'], client: client);
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.morningstarEs,
+            symbols: <String>['0P000001BW', '0P00012BBI', '0P00009QPB'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -601,7 +641,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. morningstarEs, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarEs,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -623,7 +665,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. morningstarEs, symbols: <String>[ '0P000001BW'], client: client);
+            quoteProvider: QuoteProvider.morningstarEs,
+            symbols: <String>['0P000001BW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -812,7 +856,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -842,7 +888,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BCD'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BCD'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -876,7 +924,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'WWW'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['WWW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -907,7 +957,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC', 'BCD', 'WWW'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC', 'BCD', 'WWW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -942,7 +994,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -973,7 +1027,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1169,7 +1225,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1199,7 +1257,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BCD'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BCD'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1233,7 +1293,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'WWW'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['WWW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1264,7 +1326,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC', 'BCD', 'WWW'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC', 'BCD', 'WWW'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1299,7 +1363,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1330,7 +1396,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coinmarketcap, symbols: <String>[ 'BTC'], client: client);
+            quoteProvider: QuoteProvider.coinmarketcap,
+            symbols: <String>['BTC'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1362,7 +1430,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'bitcoin'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1385,7 +1455,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'asdf'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['asdf'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1414,8 +1486,10 @@ void main() {
 
       Map<String, Map<String, dynamic>> quote;
       try {
-        quote = await FinanceQuote.getRawData(quoteProvider: QuoteProvider. coincap,
-            symbols: <String>[ 'bitcoin', 'adsf', 'ethereum'], client: client);
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin', 'adsf', 'ethereum'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1442,7 +1516,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'bitcoin'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1461,7 +1537,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getRawData(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'bitcoin'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1484,7 +1562,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'bitcoin'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1507,7 +1587,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'asdf'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['asdf'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1536,8 +1618,10 @@ void main() {
 
       Map<String, Map<String, dynamic>> quote;
       try {
-        quote = await FinanceQuote.getPrice(quoteProvider: QuoteProvider. coincap,
-            symbols: <String>[ 'bitcoin', 'adsf', 'ethereum'], client: client);
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin', 'adsf', 'ethereum'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1564,7 +1648,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'bitcoin'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }
@@ -1583,7 +1669,9 @@ void main() {
       Map<String, Map<String, dynamic>> quote;
       try {
         quote = await FinanceQuote.getPrice(
-            quoteProvider: QuoteProvider. coincap, symbols: <String>[ 'bitcoin'], client: client);
+            quoteProvider: QuoteProvider.coincap,
+            symbols: <String>['bitcoin'],
+            client: client);
       } catch (e) {
         expect(e, 'No exception');
       }

@@ -105,8 +105,8 @@ class FinanceQuote {
   /// If specified, the `client` provided will be used. This is used for testing purposes.
   static Future<Map<String, Map<String, String>>> getPrice(
       {@required QuoteProvider quoteProvider,
-        @required List<String> symbols,
-        http.Client client}) async {
+      @required List<String> symbols,
+      http.Client client}) async {
     final Map<String, Map<String, String>> quotePrice =
         <String, Map<String, String>>{};
 
