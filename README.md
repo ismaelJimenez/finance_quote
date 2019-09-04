@@ -41,6 +41,14 @@ If you're making multiple quote requests to the same server, you can request all
   print('Current market price for ethereum: ${cryptoQuoteRaw['ethereum']['priceUsd']}.');
   ```
   
+  # Supported providers
+  
+  * Yahoo
+  * Morningstar
+  * Coinmarketcap
+  * Coincap
+  * Binance
+  
   # TERMS & CONDITIONS
 
 Quote information fetched through this module is bound by the quote providers terms and conditions.
