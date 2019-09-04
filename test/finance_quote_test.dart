@@ -1681,4 +1681,156 @@ void main() {
       verify(client.get('https://api.coincap.io/v2/assets/bitcoin')).called(1);
     });
   });
+
+  group('downloadQuotePrice Test [FinanceQuote] - Binance', () {
+    test('Binance: 1 symbol, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response(
+              '{"symbol":"BTCUSDT","price":"10428.73000000"}', 200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 1);
+      expect(quote['BTCUSDT'].keys.length, 2);
+      expect(quote['BTCUSDT']['price'], '10428.73000');
+      expect(quote['BTCUSDT']['currency'], 'USD');
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+    });
+
+    test('Binance: 1 invalid symbol, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=asdf'))
+          .thenAnswer((_) async => http.Response(
+              r'{"code":-1100,"msg":"Illegal characters found in parameter symbol; legal range is ^[A-Z0-9_]{1,20}$."}',
+              200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['asdf'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 0);
+
+      verify(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=asdf'))
+          .called(1);
+    });
+
+    test('Binance: 3 symbols, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response(
+              '{"symbol":"BTCUSDT","price":"10428.73000000"}', 200));
+
+      when(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=ETHBTC'))
+          .thenAnswer((_) async =>
+              http.Response('{"symbol":"ETHBTC","price":"0.01686900"}', 200));
+
+      when(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=asdf'))
+          .thenAnswer((_) async => http.Response(
+              r'{"code":-1100,"msg":"Illegal characters found in parameter symbol; legal range is ^[A-Z0-9_]{1,20}$."}',
+              200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT', 'adsf', 'ETHBTC'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 2);
+      expect(quote['BTCUSDT'].keys.length, 2);
+      expect(quote['BTCUSDT']['price'], '10428.73000');
+      expect(quote['BTCUSDT']['currency'], 'USD');
+      expect(quote['ETHBTC'].keys.length, 2);
+      expect(quote['ETHBTC']['price'], '0.01687');
+      expect(quote['ETHBTC']['currency'], 'BTC');
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+      verify(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=ETHBTC'))
+          .called(1);
+      verify(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=adsf'))
+          .called(1);
+    });
+
+    test('Binance: null, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response('{}', 200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 0);
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+    });
+
+    test('Binance: null, 404 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response('{}', 404));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 0);
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+    });
+  });
 }

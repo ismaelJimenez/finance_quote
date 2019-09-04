@@ -1,3 +1,7 @@
+## [0.1.1] - 4/9/19
+
+*  Added binance support.
+
 ## [0.1.0] - 3/9/19
 
 *  Stabilize quote retrieval interfaces.

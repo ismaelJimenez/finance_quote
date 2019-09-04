@@ -81,5 +81,18 @@ void main() {
       expect(quote.keys.length, 1);
       expect(quote['bitcoin'].keys.length, 2);
     });
+
+    test('Binance', () async {
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getPrice(
+            quoteProvider: QuoteProvider.binance, symbols: <String>['BTCUSDT']);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 1);
+      expect(quote['BTCUSDT'].keys.length, 2);
+    });
   });
 }

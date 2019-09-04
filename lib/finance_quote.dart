@@ -4,6 +4,7 @@
 
 library finance_quote;
 
+import 'package:finance_quote/src/quote_providers/binance.dart';
 import 'package:meta/meta.dart';
 import 'package:finance_quote/src/app_logger.dart';
 import 'package:finance_quote/src/quote_providers/coincap.dart';
@@ -22,7 +23,8 @@ enum QuoteProvider {
   coincap,
   coinmarketcap,
   morningstarDe,
-  morningstarEs
+  morningstarEs,
+  binance
 }
 
 class FinanceQuote {
@@ -80,6 +82,12 @@ class FinanceQuote {
         {
           retrievedQuoteData =
               await Coincap.downloadRaw(symbols, client, logger);
+        }
+        break;
+      case QuoteProvider.binance:
+        {
+          retrievedQuoteData =
+              await Binance.downloadRaw(symbols, client, logger);
         }
         break;
       default:
@@ -142,6 +150,11 @@ class FinanceQuote {
         case QuoteProvider.coincap:
           {
             quotePrice[symbol] = Coincap.parsePrice(rawQuote);
+          }
+          break;
+        case QuoteProvider.binance:
+          {
+            quotePrice[symbol] = Binance.parsePrice(rawQuote);
           }
           break;
         default:
