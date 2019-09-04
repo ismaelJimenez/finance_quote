@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 class MockClient extends Mock implements http.Client {}
 
 void main() {
-  test('downloadRawQuote - No symbol', () async {
+  test('getRawData - No symbol', () async {
     final MockClient client = MockClient();
 
     Map<String, Map<String, dynamic>> quote;
@@ -28,7 +28,7 @@ void main() {
     expect(quote.keys.length, 0);
   });
 
-  test('downloadQuotePrice - No symbol', () async {
+  test('getPrice - No symbol', () async {
     final MockClient client = MockClient();
 
     Map<String, Map<String, dynamic>> quote;
@@ -44,7 +44,7 @@ void main() {
     expect(quote.keys.length, 0);
   });
 
-  group('downloadRawQuote Test [FinanceQuote] - Yahoo', () {
+  group('getRawData Test [FinanceQuote] - Yahoo', () {
     test('Yahoo: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -161,7 +161,7 @@ void main() {
     });
   });
 
-  group('downloadQuotePrice Test [FinanceQuote] - Yahoo', () {
+  group('getPrice Test [FinanceQuote] - Yahoo', () {
     test('Yahoo: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -278,7 +278,7 @@ void main() {
     });
   });
 
-  group('downloadRawQuote Test [FinanceQuote] - MorningstarDe', () {
+  group('getRawData Test [FinanceQuote] - MorningstarDe', () {
     test('MorningstarDe: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -412,7 +412,7 @@ void main() {
     });
   });
 
-  group('downloadQuotePrice Test [FinanceQuote] - MorningstarDe', () {
+  group('getPrice Test [FinanceQuote] - MorningstarDe', () {
     test('MorningstarDe: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -546,7 +546,7 @@ void main() {
     });
   });
 
-  group('downloadRawQuote Test [FinanceQuote] - MorningstarEs', () {
+  group('getRawData Test [FinanceQuote] - MorningstarEs', () {
     test('MorningstarEs: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -680,7 +680,7 @@ void main() {
     });
   });
 
-  group('downloadRawQuote Test [FinanceQuote] - CoinMarketCap', () {
+  group('getRawData Test [FinanceQuote] - CoinMarketCap', () {
     const String first50Coins = '''
 { "attention": "WARNING: This API is now deprecated and will be taken offline soon.  Please switch to the new CoinMarketCap API to avoid interruptions in service. (https://pro.coinmarketcap.com/migrate/)", 
     "data": {
@@ -1049,7 +1049,7 @@ void main() {
     });
   });
 
-  group('downloadQuotePrice Test [FinanceQuote] - CoinMarketCap', () {
+  group('getPrice Test [FinanceQuote] - CoinMarketCap', () {
     const String first50Coins = '''
 { "attention": "WARNING: This API is now deprecated and will be taken offline soon.  Please switch to the new CoinMarketCap API to avoid interruptions in service. (https://pro.coinmarketcap.com/migrate/)", 
     "data": {
@@ -1418,7 +1418,7 @@ void main() {
     });
   });
 
-  group('downloadRawQuote Test [FinanceQuote] - Coincap', () {
+  group('getRawData Test [FinanceQuote] - Coincap', () {
     test('Coincap: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -1550,7 +1550,7 @@ void main() {
     });
   });
 
-  group('downloadQuotePrice Test [FinanceQuote] - Coincap', () {
+  group('getPrice Test [FinanceQuote] - Coincap', () {
     test('Coincap: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
@@ -1682,7 +1682,156 @@ void main() {
     });
   });
 
-  group('downloadQuotePrice Test [FinanceQuote] - Binance', () {
+  group('getRawData Test [FinanceQuote] - Binance', () {
+    test('Binance: 1 symbol, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response(
+              '{"symbol":"BTCUSDT","price":"10428.73000000"}', 200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 1);
+      expect(quote['BTCUSDT'].keys.length, 2);
+      expect(quote['BTCUSDT']['price'], '10428.73000000');
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+    });
+
+    test('Binance: 1 invalid symbol, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=asdf'))
+          .thenAnswer((_) async => http.Response(
+              r'{"code":-1100,"msg":"Illegal characters found in parameter symbol; legal range is ^[A-Z0-9_]{1,20}$."}',
+              200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['asdf'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 0);
+
+      verify(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=asdf'))
+          .called(1);
+    });
+
+    test('Binance: 3 symbols, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response(
+              '{"symbol":"BTCUSDT","price":"10428.73000000"}', 200));
+
+      when(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=ETHBTC'))
+          .thenAnswer((_) async =>
+              http.Response('{"symbol":"ETHBTC","price":"0.01686900"}', 200));
+
+      when(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=asdf'))
+          .thenAnswer((_) async => http.Response(
+              r'{"code":-1100,"msg":"Illegal characters found in parameter symbol; legal range is ^[A-Z0-9_]{1,20}$."}',
+              200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT', 'adsf', 'ETHBTC'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 2);
+      expect(quote['BTCUSDT'].keys.length, 2);
+      expect(quote['BTCUSDT']['price'], '10428.73000000');
+      expect(quote['ETHBTC'].keys.length, 2);
+      expect(quote['ETHBTC']['price'], '0.01686900');
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+      verify(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=ETHBTC'))
+          .called(1);
+      verify(client
+              .get('https://api.binance.com/api/v3/ticker/price?symbol=adsf'))
+          .called(1);
+    });
+
+    test('Binance: null, 200 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response('{}', 200));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 0);
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+    });
+
+    test('Binance: null, 404 - Response', () async {
+      final MockClient client = MockClient();
+
+      when(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .thenAnswer((_) async => http.Response('{}', 404));
+
+      Map<String, Map<String, dynamic>> quote;
+      try {
+        quote = await FinanceQuote.getRawData(
+            quoteProvider: QuoteProvider.binance,
+            symbols: <String>['BTCUSDT'],
+            client: client);
+      } catch (e) {
+        expect(e, 'No exception');
+      }
+
+      expect(quote.keys.length, 0);
+
+      verify(client.get(
+              'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'))
+          .called(1);
+    });
+  });
+
+  group('getPrice Test [FinanceQuote] - Binance', () {
     test('Binance: 1 symbol, 200 - Response', () async {
       final MockClient client = MockClient();
 
