@@ -38,7 +38,8 @@ class FinanceQuote {
   /// The `symbols` argument controls which quotes shall be retrieved. This can
   /// be any string identifying a valid symbol for the [QuoteProvider].
   ///
-  /// If specified, the `client` provided will be used. This is used for testing purposes.
+  /// If specified, the `client` provided will be used, otherwise default http IO client.
+  /// This is used for testing purposes.
   static Future<Map<String, Map<String, dynamic>>> getRawData(
       {@required QuoteProvider quoteProvider,
       @required List<String> symbols,
