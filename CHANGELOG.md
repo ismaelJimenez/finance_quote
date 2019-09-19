@@ -1,3 +1,7 @@
+## [0.1.2] - 19/9/19
+
+*  Refactor to allow parallel quote retrieval.
+
 ## [0.1.1] - 4/9/19
 
 *  Added binance support.
