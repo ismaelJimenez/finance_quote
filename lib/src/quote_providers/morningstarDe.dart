@@ -33,8 +33,8 @@ class MorningstarDe {
           results[symbol] = quoteRaw;
         }
       } on MorningstarDeApiException catch (e) {
-        print(
-            'FinanceQuote MorningstarDeApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
+        logger.e(
+            'MorningstarDeApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
       }
     });
 

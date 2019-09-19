@@ -32,8 +32,8 @@ class Coincap {
           results[symbol] = quoteRaw;
         }
       } on CoincapApiException catch (e) {
-        print(
-            'FinanceQuote CoincapApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
+        logger.e(
+            'CoincapApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
       }
     });
 

@@ -32,8 +32,8 @@ class Binance {
           results[symbol] = quoteRaw;
         }
       } on BinanceApiException catch (e) {
-        print(
-            'FinanceQuote BinanceApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
+        logger.e(
+            'BinanceApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
       }
     });
 

@@ -15,8 +15,6 @@ import 'package:finance_quote/src/quote_providers/yahoo.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-final Logger logger = Logger(printer: AppLogger('FinanceQuote'));
-
 /// The identifier of the quote provider.
 enum QuoteProvider {
   yahoo,
@@ -40,12 +38,18 @@ class FinanceQuote {
   ///
   /// If specified, the `client` provided will be used, otherwise default http IO client.
   /// This is used for testing purposes.
+  ///
+  /// If specified, the `logger` provided will be used, otherwise default Logger will be used.
   static Future<Map<String, Map<String, dynamic>>> getRawData(
       {@required QuoteProvider quoteProvider,
       @required List<String> symbols,
-      http.Client client}) async {
+      http.Client client,
+      Logger logger}) async {
     // If client is not provided, use http IO client
     client ??= http.Client();
+
+    // If logger is not provided, use default logger
+    logger ??= Logger(printer: AppLogger('FinanceQuote'));
 
     // Retrieved market data.
     Map<String, Map<String, dynamic>> retrievedQuoteData =
@@ -112,10 +116,13 @@ class FinanceQuote {
   /// be any string identifying a valid symbol for the [QuoteProvider].
   ///
   /// If specified, the `client` provided will be used. This is used for testing purposes.
+  ///
+  /// If specified, the `logger` provided will be used, otherwise default Logger will be used.
   static Future<Map<String, Map<String, String>>> getPrice(
       {@required QuoteProvider quoteProvider,
       @required List<String> symbols,
-      http.Client client}) async {
+      http.Client client,
+      Logger logger}) async {
     final Map<String, Map<String, String>> quotePrice =
         <String, Map<String, String>>{};
 
@@ -124,7 +131,10 @@ class FinanceQuote {
     }
 
     final Map<String, Map<String, dynamic>> rawQuotes = await getRawData(
-        quoteProvider: quoteProvider, symbols: symbols, client: client);
+        quoteProvider: quoteProvider,
+        symbols: symbols,
+        client: client,
+        logger: logger);
 
     rawQuotes.forEach((String symbol, Map<String, dynamic> rawQuote) {
       switch (quoteProvider) {

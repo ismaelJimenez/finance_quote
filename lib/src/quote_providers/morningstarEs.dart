@@ -33,8 +33,8 @@ class MorningstarEs {
           results[symbol] = quoteRaw;
         }
       } on MorningstarEsApiException catch (e) {
-        print(
-            'FinanceQuote MorningstarEsApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
+        logger.e(
+            'MorningstarEsApiException{symbol: $symbol, statusCode: ${e.statusCode}, message: ${e.message}}');
       }
     });
 
