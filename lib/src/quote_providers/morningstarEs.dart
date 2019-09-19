@@ -29,7 +29,7 @@ class MorningstarEs {
       try {
         final Map<String, dynamic> quoteRaw =
             await _getRawQuote(symbol, client);
-        if (quoteRaw.isNotEmpty) {
+        if (quoteRaw != null && quoteRaw.isNotEmpty) {
           results[symbol] = quoteRaw;
         }
       } on MorningstarEsApiException catch (e) {
