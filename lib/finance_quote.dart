@@ -6,7 +6,7 @@ library finance_quote;
 
 import 'package:finance_quote/src/quote_providers/binance.dart';
 import 'package:meta/meta.dart';
-import 'package:finance_quote/src/app_logger.dart';
+import 'package:finance_quote/src/utils/app_logger.dart';
 import 'package:finance_quote/src/quote_providers/coincap.dart';
 import 'package:finance_quote/src/quote_providers/coinmarketcap.dart';
 import 'package:finance_quote/src/quote_providers/morningstarDe.dart';
