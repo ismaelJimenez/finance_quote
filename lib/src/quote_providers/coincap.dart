@@ -70,7 +70,6 @@ class Coincap {
     }
   }
 
-
   static Map<String, String> parsePrice(Map<String, dynamic> rawQuote) {
     return <String, String>{
       'price': double.parse(rawQuote['priceUsd'] as String).toStringAsFixed(2),

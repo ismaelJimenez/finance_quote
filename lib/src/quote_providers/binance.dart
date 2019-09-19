@@ -28,7 +28,9 @@ class Binance {
       try {
         final Map<String, dynamic> quoteRaw =
             await _getRawQuote(symbol, client);
-        if (quoteRaw != null && quoteRaw.isNotEmpty && !quoteRaw.containsKey('code')) {
+        if (quoteRaw != null &&
+            quoteRaw.isNotEmpty &&
+            !quoteRaw.containsKey('code')) {
           results[symbol] = quoteRaw;
         }
       } on BinanceApiException catch (e) {
