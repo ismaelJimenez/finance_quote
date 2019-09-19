@@ -55,7 +55,7 @@ class MorningstarDe {
         return parseRawQuote(quoteRes.body);
       } else {
         throw MorningstarDeApiException(
-            statusCode: quoteRes.statusCode, message: 'Invalid response.');
+            statusCode: quoteRes?.statusCode, message: 'Invalid response.');
       }
     } on http.ClientException {
       throw const MorningstarDeApiException(message: 'Connection failed.');
